@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,13 +24,13 @@ import ttps.spring.model.Vet;
 import ttps.spring.service.UserService;
 
 @RestController
-@RequestMapping
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin
 public class UserController {
 	
 	@Autowired
     UserService userService;
     
-	@CrossOrigin(origins = "*")
     @PostMapping("/login")
     public ResponseEntity<Object> listAllPets(@RequestBody User user ){
         Boolean users = userService.getUser(user);   
@@ -64,6 +65,8 @@ public class UserController {
         if(!users){
             return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
         }
+        System.out.print("get someone you love");
+        System.out.print(owner.getMail());
     	return new ResponseEntity<Object>(userService.updateOwner(owner), HttpStatus.OK);
     }
 	
