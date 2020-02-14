@@ -22,4 +22,6 @@ public interface UserDAOInterface extends GenericDAOInterface<User> {
 
 	public Object updateOwner(Owner owner);
 
+	public String wich(User user);
+
 }
