@@ -37,11 +37,19 @@ public class UserController {
         if(!users){
             return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
         }
-        userService.wich(user);
         return new ResponseEntity<Object>(userService.findUser(user), HttpStatus.OK);
     }
     
-    @GetMapping("/wich")
+    @GetMapping("/vets")
+    public ResponseEntity<List<Vet>> listAllVets(){
+        List<Vet> vets = userService.getAllVets();
+        if(vets.isEmpty()){
+            return new  ResponseEntity<List<Vet>>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<Vet>>(vets, HttpStatus.OK);
+    }
+    
+    @PostMapping("/wich")
     public ResponseEntity<String> wich(@RequestBody User user){
     	 Boolean users = userService.getUser(user); 
     	 if(!users){
