@@ -26,6 +26,22 @@ public class UserDAO extends GenericDao<User> implements UserDAOInterface {
 	}
 	
 	@Override
+	public String wich(User user) {
+		int vet = this.getEntityManager().createNativeQuery("select * from Vet where Vet.user_mail = ?1  and Vet.user_password = ?2 ").setParameter(1, user.getMail()).setParameter(2, user.getPassword()).getResultList().size();
+		int owner = this.getEntityManager().createNativeQuery("select * from Owner where Owner.user_mail = ?1  and Owner.user_password = ?2 ").setParameter(1, user.getMail()).setParameter(2, user.getPassword()).getResultList().size(); 
+		int admin = this.getEntityManager().createNativeQuery("select * from Admin where Admin.user_mail = ?1  and Admin.user_password = ?2 ").setParameter(1, user.getMail()).setParameter(2, user.getPassword()).getResultList().size();
+		if (vet == 1) {
+			return "Vet";
+			} else if (owner == 1) {
+				return "Owner";
+				} else if (admin == 1) { 
+					return "Admin";
+					}
+		return "null";
+	}
+	
+	
+	@Override
 	public Object findUser(String mail, String password) {
 		int vet = this.getEntityManager().createNativeQuery("select * from Vet where Vet.user_mail = ?1  and Vet.user_password = ?2 ").setParameter(1, mail).setParameter(2, password).getResultList().size();
 		int owner = this.getEntityManager().createNativeQuery("select * from Owner where Owner.user_mail = ?1  and Owner.user_password = ?2 ").setParameter(1, mail).setParameter(2, password).getResultList().size(); 
