@@ -20,10 +20,10 @@ public class Pet {
 	public String signs;
 	//public Image picture;
 	//public ArrayList<Event> events;
-	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinColumn(name = "owner_id")
 	public Owner owner;
-	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
 	@JoinColumn(name = "vet_id")
 	public Vet vet;
 	
@@ -44,6 +44,7 @@ public class Pet {
 		this.owner = owner;
 		this.vet = vet;
 	}
+	
 
     public String getName() {
 		return name;
