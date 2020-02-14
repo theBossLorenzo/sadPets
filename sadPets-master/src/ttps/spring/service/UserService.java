@@ -62,4 +62,7 @@ public class UserService {
 	public Object saveAdmin(Admin admin) {
 	    	return userDao.persist(admin);
 	}
+	public String wich(User user) {
+    	return userDao.wich(user);
+}
 }
