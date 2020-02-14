@@ -18,7 +18,6 @@ public class UserService {
 	UserDAOInterface userDao;
 	
     public boolean getUser(User user){
-    	System.out.println(user);
         return userDao.getUser(user.getMail(),user.getPassword());
     }
     
@@ -65,4 +64,8 @@ public class UserService {
 	public String wich(User user) {
     	return userDao.wich(user);
 }
+
+	public List<Vet> getAllVets() {
+		return userDao.getVets();
+	}
 }
