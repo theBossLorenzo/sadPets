@@ -24,4 +24,6 @@ public interface UserDAOInterface extends GenericDAOInterface<User> {
 
 	public String wich(User user);
 
+	public List<Vet> getVets();
+
 }
