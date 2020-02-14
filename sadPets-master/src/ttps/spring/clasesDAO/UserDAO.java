@@ -88,4 +88,10 @@ public class UserDAO extends GenericDao<User> implements UserDAOInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Override
+	public List<Vet> getVets() {
+		return this.getEntityManager().createNativeQuery("select distinct * from Vet").getResultList();
+	}
 }
