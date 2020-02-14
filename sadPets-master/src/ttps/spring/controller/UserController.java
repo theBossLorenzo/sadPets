@@ -37,8 +37,17 @@ public class UserController {
         if(!users){
             return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
         }
-        
+        userService.wich(user);
         return new ResponseEntity<Object>(userService.findUser(user), HttpStatus.OK);
+    }
+    
+    @GetMapping("/wich")
+    public ResponseEntity<String> wich(@RequestBody User user){
+    	 Boolean users = userService.getUser(user); 
+    	 if(!users){
+             return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
+         }
+        return new ResponseEntity<String>(userService.wich(user), HttpStatus.OK);
     }
 	
 	@PutMapping("/updateVet")
@@ -62,7 +71,7 @@ public class UserController {
 	@PutMapping("/updateOwner")
     public ResponseEntity<Object> updateOwner(@RequestBody Owner owner){
 		Boolean users = userService.getUser(owner);   
-        if(!users){
+        if(users){
             return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
         }
         System.out.print("get someone you love");
